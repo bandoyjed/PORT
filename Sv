@@ -1,0 +1,36 @@
+<section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <?php foreach ($projects as $project): ?>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3><?= sanitizeOutput($project['title']) ?></h3>
+                        <p><?= sanitizeOutput($project['description']) ?></p>
+                        <div class="project-tech">
+                            <?php 
+                            $techs = getProjectTechnologies($project['technologies']);
+                            foreach ($techs as $tech):
+                            ?>
+                            <span class="tech-tag"><?= sanitizeOutput(trim($tech)) ?></span>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="project-links">
+                            <?php if (!empty($project['github_url'])): ?>
+                            <a href="<?= sanitizeOutput($project['github_url']) ?>" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <?php endif; ?>
+                            <?php if (!empty($project['live_url'])): ?>
+                            <a href="<?= sanitizeOutput($project['live_url']) ?>" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
